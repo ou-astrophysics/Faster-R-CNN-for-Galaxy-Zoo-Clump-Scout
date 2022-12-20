@@ -5,4 +5,6 @@ Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from s
 * Finetune Zoobot - `Finetune Zoobot to find Clumps.ipynb`
 * Train Zoobot from scratch - `Train Zoobot to find Clumps.ipynb`
 * Train EfficientNetB0 from scratch - `Train EfficientNet to find Clumps.ipynb`
-## Work in progress...
+* Create TF Record files from png-images - `Create TFRecords for backbone CNN.ipynb`
+## Faster R-CNN
+* Create TF Record files from png-images with bounding boxes and labels - `Create TFRecords for object detection.ipynb`
