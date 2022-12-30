@@ -9,12 +9,12 @@ Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from s
 * Final model (finetuned Zoobot model) - `zoobot_for_clumps.keras`
 ## Faster R-CNN
 * Folder: Faster-RCNN - Pytorch
-** adjusted `define_model.py` from Zoobot library
-** helper libraries from Torchvision
-** Train Faster R-CNN with Zoobot as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch.ipynb`
-** Dataset class - `SDSSGalaxyDataset.py`
+  * adjusted `define_model.py` from Zoobot library
+  * helper libraries from Torchvision
+  * Train Faster R-CNN with Zoobot as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch.ipynb`
+  * Dataset class - `SDSSGalaxyDataset.py`
 * Folder: Faster-RCNN - TFOD (Tensorflow Object Detection framework)
-** feature extracter and test file
-** adjusted `model_builder.py` with Zoobot feature extracter registered
-** config-file - `faster_rcnn_zoobot.config`
-** Create TF Record files from png-images with bounding boxes and labels - `Create TFRecords for object detection.ipynb`
+  * feature extracter and test file
+  * adjusted `model_builder.py` with Zoobot feature extracter registered
+  * config-file - `faster_rcnn_zoobot.config`
+  * Create TF Record files from png-images with bounding boxes and labels - `Create TFRecords for object detection.ipynb`
