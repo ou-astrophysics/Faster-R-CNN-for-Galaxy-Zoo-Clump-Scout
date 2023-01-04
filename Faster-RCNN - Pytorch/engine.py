@@ -7,13 +7,16 @@ import torchvision.models.detection.mask_rcnn
 import utils
 from coco_eval import CocoEvaluator
 from coco_utils import get_coco_api_from_dataset
+from torch.utils.tensorboard import SummaryWriter
 
 
-def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, scaler=None):
+def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, scaler=None, tb_writer=None):
     model.train()
     metric_logger = utils.MetricLogger(delimiter="  ")
     metric_logger.add_meter("lr", utils.SmoothedValue(window_size=1, fmt="{value:.6f}"))
     header = f"Epoch: [{epoch}]"
+
+    iterations = 0
 
     lr_scheduler = None
     if epoch == 0:
@@ -56,6 +59,15 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, sc
 
         metric_logger.update(loss=losses_reduced, **loss_dict_reduced)
         metric_logger.update(lr=optimizer.param_groups[0]["lr"])
+
+        iterations += 1
+        if tb_writer is not None:
+            step = (epoch * len(data_loader)) + iterations
+            tb_writer.add_scalar('Loss', losses_reduced, step)
+            tb_writer.add_scalar('Loss_box_reg', loss_dict["loss_box_reg"], step)
+            tb_writer.add_scalar('Loss_classifier', loss_dict["loss_classifier"], step)
+            tb_writer.add_scalar('Loss_objectness', loss_dict["loss_objectness"], step)
+            tb_writer.add_scalar('Loss_rpn_box_reg', loss_dict["loss_rpn_box_reg"], step)
 
     return metric_logger
 
