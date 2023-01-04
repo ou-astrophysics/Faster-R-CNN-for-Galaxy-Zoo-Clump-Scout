@@ -15,6 +15,7 @@ Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from s
   * Train Faster R-CNN with Zoobot as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch.ipynb`
   * Dataset class - `SDSSGalaxyDataset.py`
 * Folder: Faster-RCNN - TFOD (Tensorflow Object Detection framework)
+  * Folder: Zoobot - Finetuned Zoobot model (for clumps from SDSS images), full model (`zoobot_for_clumps.keras`) and checkpoint (`cp-0102-0.84.ckpt`)
   * feature extracter and test file
   * adjusted `model_builder.py` with Zoobot feature extracter registered
   * config-file - `faster_rcnn_zoobot.config`
