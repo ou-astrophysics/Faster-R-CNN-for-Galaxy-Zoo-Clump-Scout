@@ -1,5 +1,5 @@
 # Faster-R-CNN-for-Galaxy-Zoo-Clump-Scout
-Region Proposal Network using Zoobot finetunded for SDSS images from Galaxy Zoo: Clump Scout as backbone
+Region Proposal Network using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://github.com/mwalmsley/zoobot): Clump Scout as backbone
 ## Backbone CNN
 Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from scratch on SDSS images:
 * Finetune Zoobot (Tensorflow) - `Finetune Zoobot to find Clumps.ipynb`
