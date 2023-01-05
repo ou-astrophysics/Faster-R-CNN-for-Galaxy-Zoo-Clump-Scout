@@ -153,12 +153,9 @@ checkpoint*
 
 # mac junk
 .DS_Store
-
+.ipynb_checkpoints/
 .vscode
 
 # custom
 checkpoints*/
 logs*/
-RPN_Backbone_GZ2/Data/combined_cat.pkl
-RPN_Backbone_GZ2/Data/metadata.pkl
-RPN_Backbone_GZ2/Data/zoo2LocalIdMap.pkl
