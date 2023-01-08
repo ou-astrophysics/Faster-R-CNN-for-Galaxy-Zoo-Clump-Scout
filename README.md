@@ -19,3 +19,4 @@ Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from s
   * adjusted `model_builder.py` with Zoobot feature extracter registered
   * config-file - `faster_rcnn_zoobot.config`
   * Create TF Record files from png-images with bounding boxes and labels - `Create TFRecords for object detection.ipynb`
+  * Notebook based on dissected TFOD API, utilising and recreating parts from TFOD: `GZ2_ClumpScout_Zoobot_EfficientDet.ipynb`
