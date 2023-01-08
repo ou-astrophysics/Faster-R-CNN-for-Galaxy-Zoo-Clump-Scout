@@ -12,7 +12,8 @@ Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from s
 * Folder: Faster-RCNN - Pytorch
   * adjusted `define_model.py` from Zoobot library
   * helper libraries from Torchvision
-  * Train Faster R-CNN with Zoobot as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch.ipynb`
+  * Train Faster R-CNN with Zoobot (based on EfficientNetB0) as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch (EfficientNet).ipynb`
+  * Train Faster R-CNN with Zoobot (based on ResNet50) as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch (Resnet).ipynb`
   * Dataset class - `SDSSGalaxyDataset.py`
 * Folder: Faster-RCNN - TFOD (Tensorflow Object Detection framework)
   * feature extracter and test file
