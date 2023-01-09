@@ -3,13 +3,15 @@ import torchvision
 import define_model
 from zoobot.pytorch.estimators import efficientnet_standard, resnet_torchvision_custom
 
-def copy_Zoobot_weights_to_Resnet(model, ckpt_path, device):
+def copy_Zoobot_weights_to_Resnet(model, ckpt_path, device, trainable_layers=0):
     """Returns a model that with pretrained weights from Zoobot.
 
     Args:
       model: a Resnet model with a standard architecture and parameter names
       ckpt_path: a full path to the Zoobot checkpoint 
       device: torch device
+      trainable_layers: number of layers counted from the head of the backbone
+        model which will be unfreezed for training
 
     Returns:
       A Pytorch model
@@ -296,5 +298,18 @@ def copy_Zoobot_weights_to_Resnet(model, ckpt_path, device):
     model.backbone.body.layer4[2].bn3.bias = zoobot.model[0][7][2].bn3.bias
     model.backbone.body.layer4[2].bn3.running_mean = zoobot.model[0][7][2].bn3.running_mean
     model.backbone.body.layer4[2].bn3.running_var = zoobot.model[0][7][2].bn3.running_var
+
+    # make sure, backbone layers are freezed after copying the weights
+    for name, parameter in model.named_parameters():
+        if name.startswith('backbone.body.'):
+            parameter.requires_grad = False
+    
+    # unfreeze selected layers
+    layers_to_train = ['backbone.body.layer4', 'backbone.body.layer3', 'backbone.body.layer2', 'backbone.body.layer1', 'backbone.body.conv1'][:trainable_layers]
+    
+    for layer in layers_to_train:
+        for name, parameter in model.named_parameters():
+            if name.startswith(layer):
+                parameter.requires_grad_(True)
 
     return model
