@@ -7,7 +7,6 @@ Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from s
 * Train Zoobot from scratch - `Train Zoobot to find Clumps.ipynb`
 * Train EfficientNetB0 from scratch - `Train EfficientNet to find Clumps.ipynb`
 * Create TF Record files from png-images - `Create TFRecords for backbone CNN.ipynb`
-* Final model - `/Faster_RCNN - TFOD/pre_trained_models/Zoobot` - Finetuned Zoobot model (for clumps from SDSS images), full model (`zoobot_for_clumps.keras`) and checkpoint (`cp-0102-0.84.ckpt`)
 ## Faster R-CNN
 * Folder: Faster-RCNN - Pytorch
   * adjusted `define_model.py` from Zoobot library
