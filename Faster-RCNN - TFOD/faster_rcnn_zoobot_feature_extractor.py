@@ -31,8 +31,7 @@ from object_detection.meta_architectures import faster_rcnn_meta_arch
 from zoobot.tensorflow.estimators import define_model, efficientnet_standard, efficientnet_custom, custom_layers
 from object_detection.utils import model_util
 
-PATH_TO_ZOOBOT_MODEL = '(insert path here)'
-CUT_LAYER = 'block7a_activation' # 'block6a_activation'
+CUT_LAYER = 'block7a_project_conv'
 
 
 class FasterRCNNZoobotFeatureExtractor(
@@ -60,21 +59,16 @@ class FasterRCNNZoobotFeatureExtractor(
     super(FasterRCNNZoobotFeatureExtractor, self).__init__(
         is_training, first_stage_features_stride, batch_norm_trainable,
         weight_decay)
-    # self.classification_backbone = None
-    self.classification_backbone = tf.keras.models.load_model(
-        PATH_TO_ZOOBOT_MODEL,
-        custom_objects={
-            'PermaRandomRotation':custom_layers.PermaRandomRotation,
-            'PermaRandomFlip':custom_layers.PermaRandomFlip,
-            'PermaRandomCrop':custom_layers.PermaRandomCrop,
-            'PermaDropout':custom_layers.PermaDropout,
-            'FixedDropout':tf.keras.layers.Dropout
-        }
-    )
-    # self.classification_backbone = tf.keras.applications.EfficientNetB0(
-    #   include_top=False, 
-    #   input_shape=(224,224,3), 
-    # )
+    self.classification_backbone = define_model.load_model(
+        './pre_trained_models/Zoobot_EfficientnetB0_colour/checkpoint', 
+        expect_partial=True,
+        include_top=False, 
+        input_size=300,  
+        crop_size=225,  
+        resize_size=224, 
+        output_dim=None,
+        channels=3 
+    ).get_layer('sequential_1').get_layer('efficientnet-b0')
     self._variable_dict = {}
 
 
@@ -112,18 +106,17 @@ class FasterRCNNZoobotFeatureExtractor(
 
       And returns rpn_feature_map:
         A tensor with shape [batch, height, width, depth]
-    """    
+    """
+    
     with tf.name_scope(name):
       with tf.name_scope('EffnetB0'):
-        proposal_features = self.classification_backbone.get_layer('sequential').get_layer('sequential_1').get_layer('efficientnet-b0').get_layer(name=CUT_LAYER).output
-        # proposal_features = self.classification_backbone.get_layer(name=CUT_LAYER).output
+        proposal_features = self.classification_backbone.get_layer(name=CUT_LAYER).output
         keras_model = tf.keras.Model(
-          inputs=self.classification_backbone.get_layer('sequential').get_layer('sequential_1').get_layer('efficientnet-b0').inputs,
-          # inputs=self.classification_backbone.inputs,
+          inputs=self.classification_backbone.inputs,
           outputs=proposal_features)
         for variable in keras_model.variables:
           self._variable_dict[variable.name[:-2]] = variable
-        
+          
         return keras_model
 
 
@@ -146,44 +139,17 @@ class FasterRCNNZoobotFeatureExtractor(
         [batch_size * self.max_num_proposals, height, width, depth]
         representing box classifier features for each proposal.
     """
+
     with tf.name_scope(name):
       with tf.name_scope('EffnetB0'):
-        proposal_feature_maps = self.classification_backbone.get_layer('sequential').get_layer('sequential_1').get_layer('efficientnet-b0').get_layer(name=CUT_LAYER).output
-        # proposal_feature_maps = self.classification_backbone.get_layer(name=CUT_LAYER).output
-        proposal_classifier_features = self.classification_backbone.get_layer('sequential').get_layer('sequential_1').get_layer('efficientnet-b0').get_layer(name='top_activation').output
-        # proposal_classifier_features = self.classification_backbone.get_layer(name='top_activation').output
+        proposal_feature_maps = self.classification_backbone.get_layer(name=CUT_LAYER).output
+        proposal_classifier_features = self.classification_backbone.get_layer(name='top_activation').output
     
         keras_model = model_util.extract_submodel(
-                model=self.classification_backbone.get_layer('sequential').get_layer('sequential_1').get_layer('efficientnet-b0'),
-                # model=self.classification_backbone,
+                model=self.classification_backbone,
                 inputs=proposal_feature_maps,
                 outputs=proposal_classifier_features)
         for variable in keras_model.variables:
           self._variable_dict[variable.name[:-2]] = variable
         
         return keras_model
-
-  # def restore_from_classification_checkpoint_fn(
-  #     self,
-  #     first_stage_feature_extractor_scope,
-  #     second_stage_feature_extractor_scope):
-  #   """Returns a map of variables to load from a foreign checkpoint.
-
-  #   Args:
-
-  #   Returns:
-  #     A dict mapping variable names (to load from a checkpoint) to variables in
-  #     the model graph.
-  #   """
-  #   variables_to_restore = {}
-  #   for variable in self.classification_backbone.variables:
-  #     # if variable.name.startswith(first_stage_feature_extractor_scope):
-  #     #   var_name = variable.name.replace(first_stage_feature_extractor_scope + '/', '')
-  #     #   variables_to_restore[var_name] = variable
-  #     # if variable.name.startswith(second_stage_feature_extractor_scope):
-  #     #   var_name = variable.name.replace(second_stage_feature_extractor_scope + '/', '')
-  #     #   variables_to_restore[var_name] = variable
-  #     var_name = variable.name
-  #     variables_to_restore[var_name] = variable
-    
-  #   return variables_to_restore
