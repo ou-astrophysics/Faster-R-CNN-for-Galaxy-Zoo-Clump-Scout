@@ -14,6 +14,7 @@ Faster R-CNN using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://g
   * helper libraries from Torchvision
   * Train Faster R-CNN with Zoobot (based on EfficientNetB0) as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch (EfficientNet).ipynb`
   * Train Faster R-CNN with Zoobot (based on ResNet50) as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch (Resnet).ipynb`
+  * Train Faster R-CNN with Zoobot (based on ResNet50) and fine-tuned for Clumps as backbone model - `GZ2_ClumpScout_Faster_RCNN_Pytorch (Resnet-Zoobot-Clumps).ipynb`
   * Dataset class - `SDSSGalaxyDataset.py`
 * Folder: Faster-RCNN - TFOD (Tensorflow Object Detection framework)
   * feature extracter and test file
