@@ -63,11 +63,11 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, sc
         iterations += 1
         if tb_writer is not None:
             step = (epoch * len(data_loader)) + iterations
-            tb_writer.add_scalar('Loss', losses_reduced, step)
-            tb_writer.add_scalar('Loss_box_reg', loss_dict["loss_box_reg"], step)
-            tb_writer.add_scalar('Loss_classifier', loss_dict["loss_classifier"], step)
-            tb_writer.add_scalar('Loss_objectness', loss_dict["loss_objectness"], step)
-            tb_writer.add_scalar('Loss_rpn_box_reg', loss_dict["loss_rpn_box_reg"], step)
+            tb_writer.add_scalar('Loss/Loss', losses_reduced, step)
+            tb_writer.add_scalar('Loss/Loss_box_reg', loss_dict["loss_box_reg"], step)
+            tb_writer.add_scalar('Loss/Loss_classifier', loss_dict["loss_classifier"], step)
+            tb_writer.add_scalar('Loss/Loss_objectness', loss_dict["loss_objectness"], step)
+            tb_writer.add_scalar('Loss/Loss_rpn_box_reg', loss_dict["loss_rpn_box_reg"], step)
 
     return metric_logger
 
