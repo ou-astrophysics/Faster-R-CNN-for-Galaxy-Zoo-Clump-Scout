@@ -1,12 +1,13 @@
 # Faster-R-CNN-for-Galaxy-Zoo-Clump-Scout
-Faster R-CNN and Region Proposal Network using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://github.com/mwalmsley/zoobot): Clump Scout as feature extractor.
+Faster R-CNN using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://github.com/mwalmsley/zoobot): Clump Scout as feature extractor.
 ## Backbone CNN
-Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from scratch on SDSS images:
-* Finetune Zoobot (Tensorflow) - `Finetune Zoobot to find Clumps.ipynb`
-* Finetune Zoobot (Pytorch) - `Finetune Zoobot to find Clumps (Pytorch).ipynb`
-* Train Zoobot from scratch - `Train Zoobot to find Clumps.ipynb`
-* Train EfficientNetB0 from scratch - `Train EfficientNet to find Clumps.ipynb`
-* Create TF Record files from png-images - `Create TFRecords for backbone CNN.ipynb`
+* Folder: ClumpScout-Classification - Tensorflow: Finetune or train Zoobot from scratch, alternatively train EfficientNetB0 from scratch on SDSS images
+  * Finetune Zoobot (Tensorflow) - `Finetune Zoobot to find Clumps.ipynb`
+  * Train Zoobot from scratch - `Train Zoobot to find Clumps.ipynb`
+  * Train EfficientNetB0 from scratch - `Train EfficientNet to find Clumps.ipynb`
+  * Create TF Record files from png-images - `Create TFRecords for backbone CNN.ipynb`
+* Folder: ClumpScout-Classification - Pytorch
+  * Finetune Zoobot (Pytorch) - `Finetune Zoobot to find Clumps (Pytorch).ipynb`, use helper files from `Faster-RCNN - Pytorch`
 ## Faster R-CNN
 * Folder: Faster-RCNN - Pytorch
   * adjusted `define_model.py` from Zoobot library

@@ -68,14 +68,15 @@ class SDSSGalaxyDataset(torch.utils.data.Dataset):
 class SDSSGalaxyDatasetClassification(torch.utils.data.Dataset):
     def __init__(self, dataframe, image_dir, colour=False, transforms=None):
         # super().__init__()
-        self.df = dataframe
         self.image_dir = image_dir
         self.colour = colour
         self.transforms = transforms
-        self.image_ids = dataframe['local_ids'].unique()
+        self.image_ids = dataframe['local_ids']
+        self.labels = dataframe['label']
         
     def __getitem__(self, index: int):
-        image_id = self.image_ids[index]
+        image_id = self.image_ids.iloc[index]
+        label = self.labels.iloc[index]
 
         image = Image.open(f"{self.image_dir}{image_id}.png").convert('RGB') # remove 4th channel of PNGs
 
@@ -86,8 +87,7 @@ class SDSSGalaxyDatasetClassification(torch.utils.data.Dataset):
             image = torch.as_tensor(image, dtype=torch.float32)
             image = F.to_pil_image(image, mode='L')
         
-        label = self.df.loc[self.df['local_ids'] == image_id, 'label'].values[0]
-        label = torch.as_tensor(label, dtype=torch.float32)
+        label = torch.as_tensor(label, dtype=torch.int64)
 
         if self.transforms is not None:
             image = self.transforms(image)
