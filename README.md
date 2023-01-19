@@ -22,3 +22,6 @@ Faster R-CNN using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://g
   * config-file - `faster_rcnn_zoobot.config`
   * Create TF Record files from png-images with bounding boxes and labels - `Create TFRecords for object detection.ipynb`
   * Notebook based on dissected TFOD API, utilising and recreating parts from TFOD: `GZ2_ClumpScout_Zoobot_EfficientDet.ipynb`
+## Comparing pre-trained Faster R-CNN networks on different sample sizes
+* Folder: Faster-RCNN-Comparison
+  * Data preparation for training runs - `Data_preparation.ipynb`
