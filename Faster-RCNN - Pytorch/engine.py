@@ -68,6 +68,7 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq, sc
             tb_writer.add_scalar('Loss/Loss_classifier', loss_dict["loss_classifier"], step)
             tb_writer.add_scalar('Loss/Loss_objectness', loss_dict["loss_objectness"], step)
             tb_writer.add_scalar('Loss/Loss_rpn_box_reg', loss_dict["loss_rpn_box_reg"], step)
+            tb_writer.add_scalar('LR/Learning_rate', optimizer.param_groups[0]["lr"], step)
 
     return metric_logger
 

@@ -25,3 +25,4 @@ Faster R-CNN using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://g
 ## Comparing pre-trained Faster R-CNN networks on different sample sizes
 * Folder: Faster-RCNN-Comparison
   * Data preparation for training runs - `Data_preparation.ipynb`
+  * Notebook for running all model comparisons - `Run_model_comparison.ipynb`
