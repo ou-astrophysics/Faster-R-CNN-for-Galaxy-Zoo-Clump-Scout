@@ -45,6 +45,18 @@ class RandomHorizontalFlip(T.RandomHorizontalFlip):
         return image, target
 
 
+class RandomVerticalFlip(T.RandomVerticalFlip):
+    def forward(
+        self, image: Tensor, target: Optional[Dict[str, Tensor]] = None
+    ) -> Tuple[Tensor, Optional[Dict[str, Tensor]]]:
+        if torch.rand(1) < self.p:
+            image = F.vflip(image)
+            if target is not None:
+                _, height, _ = F.get_dimensions(image)
+                target["boxes"][:, [1, 3]] = height - target["boxes"][:, [3, 1]]
+        return image, target
+
+
 class PILToTensor(nn.Module):
     def forward(
         self, image: Tensor, target: Optional[Dict[str, Tensor]] = None

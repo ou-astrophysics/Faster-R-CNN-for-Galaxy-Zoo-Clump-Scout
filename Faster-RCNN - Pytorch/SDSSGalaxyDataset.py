@@ -7,7 +7,7 @@ from PIL import Image
 
 
 class SDSSGalaxyDataset(torch.utils.data.Dataset):
-    def __init__(self, dataframe, image_dir, cutout=(50, 50, 350, 350), colour=False, transforms=None):
+    def __init__(self, dataframe, image_dir, cutout=(0, 0, 400, 400), colour=False, transforms=None):
         # super().__init__()
         self.df = dataframe
         self.image_dir = image_dir

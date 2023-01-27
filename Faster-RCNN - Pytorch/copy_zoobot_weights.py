@@ -1,3 +1,4 @@
+import warnings
 import torch
 import torchvision
 import torch.nn as nn
@@ -305,8 +306,14 @@ def copy_Zoobot_weights_to_Resnet(model, ckpt_path, device, trainable_layers=0):
             parameter.requires_grad = False
     
     # unfreeze selected layers
+    if trainable_layers < 0 or trainable_layers > 5:
+        raise ValueError(f"Trainable layers should be in the range [0,5], got {trainable_layers}")
+
     layers_to_train = ['backbone.body.layer4', 'backbone.body.layer3', 'backbone.body.layer2', 'backbone.body.layer1', 'backbone.body.conv1'][:trainable_layers]
     
+    if trainable_layers == 5:
+        layers_to_train.append('backbone.body.bn1')
+
     for layer in layers_to_train:
         for name, parameter in model.named_parameters():
             if name.startswith(layer):
@@ -628,8 +635,14 @@ def copy_Zoobot_clumps_weights_to_Resnet(model, ckpt_path, device, trainable_lay
             parameter.requires_grad = False
     
     # unfreeze selected layers
+    if trainable_layers < 0 or trainable_layers > 5:
+        raise ValueError(f"Trainable layers should be in the range [0,5], got {trainable_layers}")
+
     layers_to_train = ['backbone.body.layer4', 'backbone.body.layer3', 'backbone.body.layer2', 'backbone.body.layer1', 'backbone.body.conv1'][:trainable_layers]
     
+    if trainable_layers == 5:
+        layers_to_train.append('backbone.body.bn1')
+
     for layer in layers_to_train:
         for name, parameter in model.named_parameters():
             if name.startswith(layer):
