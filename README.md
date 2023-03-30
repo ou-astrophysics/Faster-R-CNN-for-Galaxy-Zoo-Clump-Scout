@@ -26,3 +26,5 @@ Faster R-CNN using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://g
 * Folder: Faster-RCNN-Comparison
   * Data preparation for training runs - `Data_preparation.ipynb`
   * Notebook for running all model comparisons - `Run_model_comparison.ipynb`
+## Running predictions on new galaxy images
+* Folder: Faster-RCNN-Detection
