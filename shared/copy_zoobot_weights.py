@@ -21,7 +21,7 @@ def copy_Zoobot_weights_to_Resnet(model, ckpt_path, device, trainable_layers=0):
 
     # load Zoobot (Resnet) and checkpoint
     zoobot = define_model.ZoobotLightningModule(
-        output_dim=34,
+        output_dim=206, #34
         question_index_groups=['idx1', 'idx2'],
         include_top=True,
         channels=3,
@@ -339,7 +339,7 @@ def copy_Zoobot_clumps_weights_to_Resnet(model, ckpt_path, device, trainable_lay
     # Get Zoobot model and weights - Resnet
     # needs to be model with head, otherwise the checkpoint won't fit
     zoobot = define_model.ZoobotLightningModule(
-        output_dim=34,
+        output_dim=206, #34,
         question_index_groups=['idx1', 'idx2'],
         include_top=True,
         channels=3,
