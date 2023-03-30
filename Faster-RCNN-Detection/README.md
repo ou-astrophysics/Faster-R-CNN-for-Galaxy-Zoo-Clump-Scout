@@ -1,5 +1,5 @@
 # Running detections
-This script will output a `parquet`-file with the labels and coordinates of the bounding boxes for detected clumps in a set of galaxy images. It takes all the images in one folder and treats the image name as the corresponding `id` for the resulting detection table.
+This script will output a `parquet`-file with the labels and coordinates of the bounding boxes for detected clumps in a set of galaxy images. It takes all the images in one folder and treats the image name as the corresponding `id` for the resulting detection table. For that, the filenames of the images need to be numeric.
 
 The labels are:
 
