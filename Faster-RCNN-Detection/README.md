@@ -1,5 +1,14 @@
 # Running detections
-This script will output a `parquet`-file with the coordinates of the bounding boxes for detected clumps in a set of galaxy images. It takes all the images in one folder and treats the image name as the corresponding `id` for the resulting detection table.
+This script will output a `parquet`-file with the labels and coordinates of the bounding boxes for detected clumps in a set of galaxy images. It takes all the images in one folder and treats the image name as the corresponding `id` for the resulting detection table.
+
+The labels are:
+
+```
+{
+  1: 'clump',
+  2: 'odd clump',
+}
+```
 
 Run the Python-script `run_predictions.py` with the following parameters:
 
