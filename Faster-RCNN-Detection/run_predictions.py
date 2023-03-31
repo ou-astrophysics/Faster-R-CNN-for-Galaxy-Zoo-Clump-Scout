@@ -226,6 +226,7 @@ def main():
             columns=['run', 'model_name', 'local_ids', 'boxes', 'labels', 'scores']
             )
         .explode(['boxes', 'labels', 'scores'])
+        .dropna() # removing non-detections
         .assign(labels = lambda df_: df_.labels.astype(int))
         .assign(scores = lambda df_: df_.scores.astype(float))
     )
