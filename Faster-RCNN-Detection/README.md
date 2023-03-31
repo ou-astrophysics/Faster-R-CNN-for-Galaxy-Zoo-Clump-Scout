@@ -16,7 +16,7 @@ Run the Python-script `run_predictions.py` with the following parameters:
 
 `--path`: The path to the folder containing the galaxy cutout image files.
 
-For example:
+Example execution:
 
 ```
 ./run_predictions.py --model zoobot --path /path/to/pngs/
