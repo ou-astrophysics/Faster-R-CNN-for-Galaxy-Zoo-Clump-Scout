@@ -31,3 +31,5 @@ Faster R-CNN using Zoobot finetunded for SDSS images from [Galaxy Zoo](https://g
   * `run_predictions.py` - Python script to run Faster-RCNN model detections on galaxy images (PNG files), including non-maximum suppression.
   * `run_post_processing.py` - Python script to merge adjacent clumps and mask detections with a segment map of the host galaxy.
   * `run_photometry.py` - Python script to run the photometry measurements, incl. masking other clumps and the area outside the host galaxy extent for correct background substraction.
+## Clump catalogue for Galaxy Zoo 2 galaxy images (SDSS)
+* Folder: Faster-RCNN-GZ2-Clump catalogue
