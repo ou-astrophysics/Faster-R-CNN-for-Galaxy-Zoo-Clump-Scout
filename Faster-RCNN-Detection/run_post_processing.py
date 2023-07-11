@@ -35,7 +35,7 @@ from tqdm import tqdm
 
 
 DATA_PATH = './data/'
-FITS_FILE_PATH = '/scratch.global/adams900/gz2_cutouts_sept_2022/'
+FITS_FILE_PATH = '/path/to/FITS/files/'
 PREDICTIONS_FILE_PATH = './predictions/'
 
 
@@ -142,6 +142,7 @@ def main():
         'labels',
         'scores',
         'is_central',
+        'isin_galaxy',
     ]
 
     model_list = df['model_name'].unique().tolist()
@@ -191,9 +192,9 @@ def main():
                         columns=['clump_centre_ra', 'clump_centre_dec']
                     )
             
-                __df = pd.concat([_df.reset_index(), df1], axis=1)
+                    __df = pd.concat([_df.reset_index(), df1], axis=1)
             
-                results.append(__df)
+                    results.append(__df)
         
         f_file.close()
     
