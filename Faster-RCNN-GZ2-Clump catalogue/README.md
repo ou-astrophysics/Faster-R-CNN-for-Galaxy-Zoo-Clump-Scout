@@ -1,7 +1,7 @@
 # Clump catalogue
 Faster-R-CNN clump detections using Zoobot as the feature extraction backbone on the full set of Galaxy Zoo 2 galaxies observed by SDSS.
 
-The csv-file `FRCNN_Zoobot_SDSS_GZ2_detections.csv.zip` has the following columns and contains all clumps with an estimated clump/galaxy u-band flux ratio of >3%.
+The csv-file `FRCNN_Zoobot_SDSS_GZ2_detections.csv.zip` has the following columns and contains all clumps with an estimated clump/galaxy u-band flux ratio of >3%. Alternatively, the file `FRCNN_Zoobot_SDSS_GZ2_detections_parquet.gzip` contains the same data but stored as a parquet-file.
 
 | Column name | Description |
 | ----------- | ----------- |
