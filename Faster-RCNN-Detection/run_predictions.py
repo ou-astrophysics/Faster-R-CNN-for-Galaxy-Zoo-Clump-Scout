@@ -38,7 +38,7 @@ else:
     GPU_COUNT = 1
 
 MODEL_PATH = './models_final/'
-BATCH_SIZE = GPU_COUNT * 4
+BATCH_SIZE = 1 #GPU_COUNT * 4
 
 
 # create model dict

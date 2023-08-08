@@ -13,6 +13,13 @@ The csv-file `FRCNN_Zoobot_SDSS_GZ2_detections.csv.zip` has the following column
  `clump_score`  |  Detection score for the clump |
  `clump_centre_ra`  |  Clump centroid RA in degrees | 
  `clump_centre_dec`  |  Clump centroid dec in degrees | 
+ `clump_centre_px_x`  |  Clump centroid X in PNG-coutout pixels |
+ `clump_centre_px_y`  |  Clump centroid Y in PNG-coutout pixels |
+ `clump_px_x1`  |  Clump bounding box X1 in PNG-coutout pixels |
+ `clump_px_x2`  |  Clump bounding box X2 in PNG-coutout pixels |
+ `clump_px_y1`  |  Clump bounding box Y1 in PNG-coutout pixels |
+ `clump_px_y2`  |  Clump bounding box Y2 in PNG-coutout pixels |
+ `FWHM_r_px`  |  r-band PSF-FWHM in PNG-coutout pixels |
  `clump_flux_u`  |  Clump u-band flux in Jy |
  `clump_flux_g`  |  Clump g-band flux in Jy |
  `clump_flux_r`  |  Clump r-band flux in Jy |
