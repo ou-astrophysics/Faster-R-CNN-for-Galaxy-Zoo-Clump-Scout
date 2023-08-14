@@ -22,8 +22,7 @@ Example execution:
 ```
 python ./run_predictions.py --model zoobot --path /path/to/pngs/
 ```
-The checkpoints for the Faster R-CNN models are not stored with this repository. Please download the models from here: https://s3.msi.umn.edu/FRCNN_clumps/models_final.zip
-and extract the files into a folder named `models_final` in the same directory.
+The checkpoints for the Faster R-CNN models need to be in a folder named `models_final` in the same directory.
 
 # Running post-processing
 Run the Python-script `run_post_processing.py` with the following parameters:
